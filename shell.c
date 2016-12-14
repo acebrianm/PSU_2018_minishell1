@@ -5,7 +5,7 @@
 ** Login   <alexandro.cebrianmancera@epitech.eu>
 ** 
 ** Started on  Sat Dec  3 15:13:33 2016 cebria_a
-** Last update Sat Dec  3 19:43:49 2016 cebria_a
+** Last update Mon Dec 12 18:36:26 2016 cebria_a
 */
 
 #include <signal.h>
@@ -25,13 +25,13 @@ void	run_program(char **env, char **cmd, int i)
   if ((paths = malloc(sizeof(char *) * my_strlen(env[i]) + 1)) == NULL)
     print_err("Couldn't allocate memory.\n");
   paths = my_str_to_wordtab(env[i], 2);
-  paths = &paths[1];
   i = 0;
   while (paths[i])
     {
       paths[i] = my_strcat(paths[i], cmd[0]);
-      if (execve(paths[i], cmd, env) == -1)
-	free(paths[i++]);
+      if (access(paths[i], F_OK && X_OK) == 0)
+	execve(paths[i], cmd, env);
+      free(paths[i++]);
     }
 }
 

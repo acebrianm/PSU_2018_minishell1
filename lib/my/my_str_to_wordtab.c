@@ -5,7 +5,7 @@
 ** Login   <alexandro.cebrianmancera@epitech.eu>
 ** 
 ** Started on  Tue Nov 15 15:10:05 2016 cebria_a
-** Last update Sat Dec  3 17:32:57 2016 cebria_a
+** Last update Mon Dec 12 18:09:26 2016 cebria_a
 */
 
 #include <stdlib.h>
@@ -53,6 +53,8 @@ char	*get_word(char *str, int i, int type)
       i++;
     }
   word[j] = 0;
+  if (j == 0)
+    free(word);
   return (word);
 }
 

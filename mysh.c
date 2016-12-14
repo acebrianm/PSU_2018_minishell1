@@ -5,7 +5,7 @@
 ** Login   <alexandro.cebrianmancera@epitech.eu>
 ** 
 ** Started on  Fri Dec  2 18:44:57 2016 cebria_a
-** Last update Sat Dec  3 18:45:16 2016 cebria_a
+** Last update Mon Dec 12 18:16:00 2016 cebria_a
 */
 
 #include <my.h>
@@ -36,6 +36,7 @@ char    **get_env(char **envp, int i)
       env[i][j] = 0;
       i++;
     }
+  envp[i] = 0;
   return (env);
 }
 

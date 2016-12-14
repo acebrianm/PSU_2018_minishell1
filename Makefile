@@ -5,7 +5,7 @@
 ## Login   <alexandro.cebrianmancera@epitech.eu>
 ## 
 ## Started on  Mon Nov 14 18:41:22 2016 cebria_a
-## Last update Sat Dec 03 16:27:34 2016 
+## Last update Mon Dec 12 18:14:26 2016 
 ##
 
 CC	=	gcc
@@ -18,7 +18,7 @@ IDIR 	=	include/
 
 LDIR	=	lib/my/
 
-CFLAGS	=	-Wall -Wextra -I$(IDIR)
+CFLAGS	=	-Wall -Wextra -I$(IDIR) -g3
 
 LFLAGS 	=	-L$(LDIR) -lmy
 
