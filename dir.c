@@ -5,7 +5,7 @@
 ** Login   <alexandro.cebrianmancera@epitech.eu>
 ** 
 ** Started on  Sat Dec  3 16:12:37 2016 cebria_a
-** Last update Sat Dec  3 20:01:40 2016 cebria_a
+** Last update Mon Dec 19 20:41:40 2016 cebria_a
 */
 
 #include <unistd.h>
@@ -47,8 +47,8 @@ void	change_dir(char **env, char *input, char **cmd)
       else if (access(cmd[1], F_OK & R_OK) == -1 && (is_dir(cmd[1]) == 0))
         {
           my_putstr("cd : no such file or directory: ");
-	  my_putstr(cmd[1]);
-	  my_putchar('\n');
+          my_putstr(cmd[1]);
+          my_putchar('\n');
         }
       else
         chdir(cmd[1]);

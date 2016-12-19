@@ -5,7 +5,7 @@
 ** Login   <alexandro.cebrianmancera@epitech.eu>
 ** 
 ** Started on  Tue Nov 15 15:10:05 2016 cebria_a
-** Last update Mon Dec 12 18:09:26 2016 cebria_a
+** Last update Mon Dec 19 21:16:50 2016 cebria_a
 */
 
 #include <stdlib.h>
@@ -21,6 +21,19 @@ int	is_del(char c, int type)
     return (1);
 }
 
+int	count_letters(char *str, int i, int type)
+{
+  int	j;
+
+  j = 0;
+  while (is_del(str[i], type) == 1 && str[i] != 0)
+    {
+      j++;
+      i++;
+    }
+  return (j);
+}
+
 int	count_words(char *str, int i, int type)
 {
   int	words;
@@ -29,11 +42,11 @@ int	count_words(char *str, int i, int type)
   while (str[i] != 0)
     {
       if (i == 0)
-	i++;
+        i++;
       if (is_del(str[i], type) == 0 && is_del(str[i - 1], type) == 1)
-	words++;
+        words++;
       if (is_del(str[i], type) == 1 && str[i + 1] == 0)
-	words++;
+        words++;
       i++;
     }
   return (words);
@@ -43,8 +56,8 @@ char	*get_word(char *str, int i, int type)
 {
   char	*word;
   int	j;
-  
-  word = malloc(sizeof(char));
+
+  word = malloc(sizeof(char) * (count_letters(str, i, type) + 1));
   j = 0;
   while (is_del(str[i], type) == 1 && str[i] != 0)
     {
@@ -71,12 +84,12 @@ char	**my_str_to_wordtab(char *str, int type)
   while (str[i] != 0)
     {
       if (is_del(str[i], type) == 1)
-	{
-	  word = get_word(str, i, type);
-	  tab[j] = word;
-	  j++;
-	  i = i + my_strlen(word) - 1;
-	}
+        {
+          word = get_word(str, i, type);
+          tab[j] = word;
+          j++;
+          i = i + my_strlen(word) - 1;
+        }
       i++;
     }
   tab[j] = 0;

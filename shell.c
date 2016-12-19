@@ -5,7 +5,7 @@
 ** Login   <alexandro.cebrianmancera@epitech.eu>
 ** 
 ** Started on  Sat Dec  3 15:13:33 2016 cebria_a
-** Last update Mon Dec 12 18:36:26 2016 cebria_a
+** Last update Mon Dec 19 21:14:10 2016 cebria_a
 */
 
 #include <signal.h>
@@ -30,18 +30,29 @@ void	run_program(char **env, char **cmd, int i)
     {
       paths[i] = my_strcat(paths[i], cmd[0]);
       if (access(paths[i], F_OK && X_OK) == 0)
-	execve(paths[i], cmd, env);
+        execve(paths[i], cmd, env);
       free(paths[i++]);
     }
 }
 
 void	start_process(char **env, char *input, char **cmd)
 {
-  if (my_strcmp("env", input) == 0)
+  if (my_strncmp("cd", input, 2) == 1)
+    change_dir(env, input, cmd);
+  else if (my_strcmp("env", input) == 0)
     print_env(env);
   else
     run_program(env, cmd, 0);
   exit(EXIT_SUCCESS);
+}
+
+char	**call_envs(char **env, char *input, int type)
+{
+  my_putstr("msh1$> ");
+  if (type == 1)
+    return (set_env(env, input));
+  else
+    return (unset_env(env, input));
 }
 
 void	start_shell(char **env)
@@ -50,24 +61,25 @@ void	start_shell(char **env)
   char 	*input;
   char 	**cmd;
 
-  while ((input = get_next_line(0)))
+  while ((input = get_next_line(0)) && my_strcmp(input, "exit") != 0)
     {
-      if (my_strcmp(input, "exit") == 0)
-	exit(EXIT_SUCCESS);
       cmd = my_str_to_wordtab(input, 1);
-      if (my_strncmp(input, "cd", 2) == 0)
-	{
-	  if ((kiddo = fork()) < 0)
-	    print_err("Couldn't create the process.\n");
-	  else if (kiddo == 0)
-	    start_process(env, input, cmd);
-	  else
-	    {
-	      wait(0);
-	      my_putstr("msh1$> ");
-	    }
-	}
+      if (my_strncmp("setenv", input, 6) == 1)
+        env = call_envs(env, input, 1);
+      else if (my_strncmp("unsetenv", input, 8) == 1)
+        env = call_envs(env, input, 2);
       else
-	change_dir(env, input, cmd);
+        {
+          if ((kiddo = fork()) < 0)
+            print_err("Couldn't create the process.\n");
+          else if (kiddo == 0)
+            start_process(env, input, cmd);
+          else
+            {
+              wait(0);
+              my_putstr("msh1$> ");
+            }
+        }
     }
+  exit(EXIT_SUCCESS);
 }

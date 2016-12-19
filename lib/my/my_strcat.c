@@ -5,7 +5,7 @@
 ** Login   <alexandro.cebrianmancera@epitech.eu>
 ** 
 ** Started on  Tue Nov 22 18:23:13 2016 cebria_a
-** Last update Sat Dec  3 17:34:34 2016 cebria_a
+** Last update Mon Dec 19 21:14:54 2016 cebria_a
 */
 
 #include <my.h>
@@ -22,7 +22,7 @@ char	*my_strcat(char *dest, char *src)
     print_err("Couldn't allocate memory.\n");
   i = 0;
   j = 0;
-  while(dest[i] != 0)
+  while (dest[i] != 0)
     {
       new[i] = dest[i];
       i++;

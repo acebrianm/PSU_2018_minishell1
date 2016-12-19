@@ -5,23 +5,23 @@
 ** Login   <alexandro.cebrianmancera@epitech.eu>
 ** 
 ** Started on  Mon Oct 10 17:21:12 2016 cebria_a
-** Last update Tue Nov 29 14:32:54 2016 cebria_a
+** Last update Mon Dec 19 21:15:46 2016 cebria_a
 */
 
 #include "my.h"
 
-int	my_strcmp(char *s1, char *s2)
+int	my_strcmp(char *fir, char *sec)
 {
   int	i;
   int	diff;
 
   i = 0;
-  while (s1[i] == s2[i])
+  while (fir[i] == sec[i])
     {
-      if (s1[i] == 0)
-	return (0);
+      if (fir[i] == 0)
+        return (0);
       i++;
     }
-  diff = s1[i] - s2[i];
+  diff = fir[i] - sec[i];
   return (diff);
 }

@@ -5,7 +5,7 @@
 ## Login   <alexandro.cebrianmancera@epitech.net>
 ## 
 ## Started on  Mon Oct 17 15:36:52 2016 cebria_a
-## Last update Sat Dec 03 15:00:35 2016 
+## Last update Mon Dec 19 21:12:01 2016 
 ##
 
 CC	=	gcc
@@ -21,6 +21,7 @@ SRC	=	my_putchar.c		\
 		my_putstr.c		\
 		my_strcat.c		\
 		my_strcmp.c		\
+		my_strncmp.c		\
 		my_strcpy.c		\
 		my_strdup.c		\
 		my_strlen.c		\

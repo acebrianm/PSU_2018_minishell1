@@ -5,7 +5,7 @@
 ** Login   <alexandro.cebrianmancera@epitech.eu>
 ** 
 ** Started on  Fri Dec  2 18:44:57 2016 cebria_a
-** Last update Mon Dec 12 18:16:00 2016 cebria_a
+** Last update Mon Dec 19 20:42:21 2016 cebria_a
 */
 
 #include <my.h>
@@ -29,10 +29,10 @@ char    **get_env(char **envp, int i)
       if ((env[i] = malloc(sizeof(char) * my_strlen(envp[i]) + 1)) == 0)
         print_err("Couldn't allocate memory.\n");
       while (envp[i][j])
-	{
-	  env[i][j] = envp[i][j];
-	  j++;
-	}
+        {
+          env[i][j] = envp[i][j];
+          j++;
+        }
       env[i][j] = 0;
       i++;
     }
@@ -50,6 +50,8 @@ int	main(int ac, char **av, char **envp)
 {
   char	**env;
 
+  ac--;
+  av++;
   env = get_env(envp, 0);
   my_putstr("msh1$> ");
   signal(SIGINT, sig_handler);
